@@ -1,0 +1,21 @@
+server:
+    port: 9191
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/Microservices
+        username: kacper
+        password: kacper
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+    kafka:
+        bootstrap-servers: localhost:9092
+        group-id: stock-service
+
+application:
+    security:
+        jwt:
+            secret-key: e0d0775524ea98b31f39e162f7c554a9fa359c3eec6156f1dbb165bb8950a9e0
+            #1 hour
+            expiration-time: 3600000
