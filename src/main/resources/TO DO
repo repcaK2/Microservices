@@ -1,10 +1,21 @@
 spring boot backend +
-apache kafka
-asynchroniczne programowanie
-chat gpt API
-Exception handling
-microservice
-javaFX do interfejsu ?
+apache kafka +
+asynchroniczne programowanie -
+chat gpt API +
+Exception handling -
+SQL + NoSQL -
+microservice -
 
 have to add storage update logic
-test order sending
+test order sending +
+
+1. System Zarządzania Zamówieniami
+Zbuduj system, który obsługuje zamówienia w sklepie internetowym.
+Użyj Kafki do przetwarzania strumieni zamówień w czasie rzeczywistym,
+asynchroniczne programowanie do obsługi zapytań i operacji,
+SQL do przechowywania danych klientów oraz zamówień,
+a NoSQL do niezawodnego przechowywania danych produktów i ich dostępności.
+
+Aplication will scan every single move of the user only by analyzing only backend.!!!
+
+Wrzucic nasluchiwania kafki i logow do bazy danych z pomoca kafakListener

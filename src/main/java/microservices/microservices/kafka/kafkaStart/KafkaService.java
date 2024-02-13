@@ -1,4 +1,4 @@
-package microservices.microservices.kafka;
+package microservices.microservices.kafka.kafkaStart;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -13,5 +13,4 @@ public class KafkaService {
 	public void sendMessage(String message){
 			kafkaTemplate.send("start", message);
 	}
-
 }
