@@ -1,4 +1,4 @@
-package microservices.microservices.kafka.kafkaStart;
+package microservices.microservices.kafka.kafkaStartTest;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;

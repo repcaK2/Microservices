@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import microservices.microservices.store.cart.Cart;
 import org.hibernate.annotations.NaturalId;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -32,6 +33,10 @@ public class User implements UserDetails {
 
 	@Enumerated(EnumType.STRING)
 	private role role;
+
+	@OneToMany
+	@JoinColumn(name = "user_id")
+	private List<Cart> cart;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

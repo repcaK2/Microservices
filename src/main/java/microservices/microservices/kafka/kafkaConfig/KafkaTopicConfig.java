@@ -21,6 +21,9 @@ public class KafkaTopicConfig {
 	@Value("${spring.kafka.topic-logs}")
 	private String logs;
 
+	@Value("${spring.kafka.topic-logsAnswer}")
+	private String orderServerAnswer;
+
 	@Value("${spring.kafka.topic-hibernateLogs}")
 	private String topicHibernateLogs;
 
@@ -76,6 +79,13 @@ public class KafkaTopicConfig {
 	public NewTopic openai() {
 		return TopicBuilder
 				.name(topicOpenai)
+				.build();
+	}
+
+	@Bean
+	public NewTopic logAnswer() {
+		return TopicBuilder
+				.name(orderServerAnswer)
 				.build();
 	}
 }

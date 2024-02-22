@@ -17,5 +17,8 @@ public class OrderRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
+	private String email;
+	private String adress;
 	private String productName;
+	private String creationDate;
 }

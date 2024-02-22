@@ -10,6 +10,11 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -22,16 +27,22 @@ public class SecurityConfiguration {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity
-				.cors(AbstractHttpConfigurer::disable)
+				.cors(cors -> cors.configurationSource(corsConfigurationSource()))
 				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/api/auth/**").permitAll()
-						.requestMatchers("/secured").hasAuthority("ADMIN")
+						.requestMatchers("/secured").permitAll()
 						.requestMatchers("/user/**").hasAuthority("ADMIN")
 						.requestMatchers("/spyUser").hasAuthority("ADMIN")
 						.requestMatchers("/product/all").hasAnyAuthority("ADMIN", "USER")
 						.requestMatchers("/product/add").hasAuthority("ADMIN")
 						.requestMatchers("/openai/chat").hasAuthority("ADMIN")
+						.requestMatchers("/log/all").hasAuthority("ADMIN")
+						.requestMatchers("/cart/**").hasAnyAuthority("ADMIN", "USER")
+						.requestMatchers("/testAPI").permitAll()
+						.requestMatchers("/sendOrder/all").permitAll()
+						.requestMatchers("/sendOrder/email").hasAnyAuthority("ADMIN", "USER")
+						.requestMatchers("/sendOrder/newOrder").hasAnyAuthority("ADMIN", "USER")
 						.anyRequest()
 						.authenticated()
 				)
@@ -40,5 +51,17 @@ public class SecurityConfiguration {
 				.authenticationProvider(authenticationProvider)
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 		return httpSecurity.build();
+	}
+
+	@Bean
+	public CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+		configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
+		configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
 	}
 }

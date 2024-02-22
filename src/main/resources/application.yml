@@ -1,6 +1,9 @@
 server:
     port: 9191
 spring:
+    data:
+        mongodb:
+            uri: mongodb://localhost:27017/DeliveryOrder
     datasource:
         url: jdbc:postgresql://localhost:5432/Microservices
         username: kacper
@@ -12,11 +15,12 @@ spring:
     kafka:
         bootstrap-servers: localhost:9092
         group-id: stock-service
-        topic-order: order5
+        topic-order: orderRequest
         topic-newUser: newUser
         topic-authenticatedUser: authenticatedUser
         topic-followUser: followUser
         topic-logs: logs
+        topic-logsAnswer: orderServerAnswer
         topic-hibernateLogs: hibernateLogs
         topic-openai: openai
 
@@ -24,7 +28,6 @@ openai:
     apiKey: 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
     url: https://api.openai.com/v1/chat/completions
     model: gpt-4
-
 
 application:
     security:

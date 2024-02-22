@@ -3,19 +3,18 @@ apache kafka +
 asynchroniczne programowanie -
 chat gpt API +
 Exception handling -
-SQL + NoSQL -
+SQL + NoSQL +
 microservice -
+Cloud SERIVCE -
+elastic search -
+follow user on everyendpoint not only demo -
+docker -
+kubernetes -
 
-have to add storage update logic
-test order sending +
+FRONTEND:
+register-
+login-
+chatGPT form-
+send order request-
 
-1. System Zarządzania Zamówieniami
-Zbuduj system, który obsługuje zamówienia w sklepie internetowym.
-Użyj Kafki do przetwarzania strumieni zamówień w czasie rzeczywistym,
-asynchroniczne programowanie do obsługi zapytań i operacji,
-SQL do przechowywania danych klientów oraz zamówień,
-a NoSQL do niezawodnego przechowywania danych produktów i ich dostępności.
-
-Aplication will scan every single move of the user only by analyzing only backend.!!!
-
-Wrzucic nasluchiwania kafki i logow do bazy danych z pomoca kafakListener
+B2B?
